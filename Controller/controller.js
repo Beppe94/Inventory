@@ -1,4 +1,4 @@
-import { getGames } from "../Database/Queries.js";
+import { getGames, insertGameInDB } from "../Database/Queries.js";
 
 export async function getHomepage(req, res) {
     const data = await getGames();
@@ -24,5 +24,7 @@ export async function newGamePost(req, res) {
 
     console.log(title,description, image ,price,publisher,reviews,genre);
 
-    return;
+    await insertGameInDB({title, description, image, price, publisher, reviews, genre})
+
+    res.redirect("/")
 }
