@@ -9,9 +9,14 @@
     <a href="/"><button>Home</button></a>
     <a href="/newGame"><button>Add Game</button></a>
     <div>
-        <h1>Home</h1>
-        <%-include("./gameList", data)%>
-        <p>Inventory</p>
+        <nav>
+            <h1>Home</h1>
+        </nav>
+
+        <div>
+            <%-include("./gameList", data)%>
+        </div>
+        
     </div>
 </body>
 </html>

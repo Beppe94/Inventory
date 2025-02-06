@@ -5,7 +5,9 @@
             <p><%=game.price%></p>
             <img src=<%=game.image%>>
             <p><%=game.reviews%></p>
-            <p><%=game.genre%></p>
+            <%game.genre.forEach((tag) => {%> 
+                <p><%=tag%></p>
+            <%})%>
         </div>
     <%})%>
 </div>

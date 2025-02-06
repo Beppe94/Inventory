@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Game</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.1.0/dist/css/multi-select-tag.css">
 </head>
 <body>
     <div>
-        <form action="/newGame" method="POST" name="newGame">
+        <form id="gameForm" action="/newGame" method="POST" name="newGame">
             <div>
                 <label id="title">Title:</label>
                 <input type="text" name="title" value="<%=data?.title || ''%>">
@@ -41,14 +42,33 @@
             </div>
 
             <div>
-                <label id="genre">Genre:</label>
-                <input type="text" name="genre" value="<%=data?.genre || ''%>">
+                <label>Genre:</label>
+                <select name="genre" id="genres" multiple>
+                    <option value="rpg">Rpg</option>
+                    <option value="fps">Fps</option>
+                    <option value="simulator">Simulator</option>
+                    <option value="action">Action</option>
+                    <option value="survival">Survival</option>
+                    <option value="racing">Racing</option>
+                    <option value="horror">Horror</option>
+                    <option value="rogue-like">Rogue-Like</option>
+                    <option value="sport">Sport</option>
+                </select>
                 <%errors?.filter(err => err.path == 'genre').forEach(err => {%>
                     <p><%=err.msg%></p>
                 <%})%>
             </div>
-            <button type="submit">Add</button>
+            <button type="submit" id="submitBtn">Add</button>
         </form>
+        <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.1.0/dist/js/multi-select-tag.js"></script>
+        <script>
+            new MultiSelectTag("genres");
+            const form = document.getElementById("gameForm");
+            const button = document.getElementById("submitBtn")
+            form.addEventListener("submit", (e) => {
+                button.disabled = true;
+            })
+        </script>
     </div>
 </body>
 </html>
