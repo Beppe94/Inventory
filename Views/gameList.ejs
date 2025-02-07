@@ -1,13 +1,15 @@
-<div>
-    <% data.forEach((game) => { %>
-        <div class="card">
-            <p><%=game.title%></p>
-            <p><%=game.price%></p>
-            <img src=<%=game.image%>>
-            <p><%=game.reviews%></p>
-            <%game.genre.forEach((tag) => {%> 
-                <p><%=tag%></p>
-            <%})%>
+<% data.forEach((game) => { %>
+    <div class="card" data-key=<%=game.id%>>
+        <p><%=game.title%></p>
+        <p><%=game.price%></p>
+        <img src=<%=game.image%>>
+        <p><%=game.reviews%></p>
+        <%game.genre.forEach((tag) => {%> 
+            <p><%=tag%></p>
+        <%})%>
+        <div>
+            <a href="/<%=game.id%>/updateGame"><button>Edit</button></a>
         </div>
-    <%})%>
-</div>
+    </div>
+<%})%>
+

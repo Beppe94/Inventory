@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <a href="/"><button>Home</button></a>
-    <a href="/newGame"><button>Add Game</button></a>
     <div>
         <nav>
             <h1>Home</h1>
         </nav>
 
-        <div>
+        <div class="cardContainer">
+            <a href="/newGame" class="addButton"><button class="addButton">+</button></a>
             <%-include("./gameList", data)%>
         </div>
         

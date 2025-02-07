@@ -20,3 +20,4 @@ export async function insertGameInDB(data) {
 
     await client.query(`INSERT INTO info (game_id, reviews, genre) VALUES ($1, $2, $3)`, [gameId, reviews, genre])
 }
+

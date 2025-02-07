@@ -43,7 +43,7 @@
 
             <div>
                 <label>Genre:</label>
-                <select name="genre" id="genres" multiple>
+                <select name="genre" id="genre" multiple>
                     <option value="rpg">Rpg</option>
                     <option value="fps">Fps</option>
                     <option value="simulator">Simulator</option>
@@ -53,6 +53,9 @@
                     <option value="horror">Horror</option>
                     <option value="rogue-like">Rogue-Like</option>
                     <option value="sport">Sport</option>
+                    <option value="souls-like">Souls-Like</option>
+                    <option value="multiplayer">Multilpayer</option>
+                    <option value="fantasy">Fantasy</option>
                 </select>
                 <%errors?.filter(err => err.path == 'genre').forEach(err => {%>
                     <p><%=err.msg%></p>
@@ -62,7 +65,7 @@
         </form>
         <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.1.0/dist/js/multi-select-tag.js"></script>
         <script>
-            new MultiSelectTag("genres");
+            new MultiSelectTag("genre");
             const form = document.getElementById("gameForm");
             const button = document.getElementById("submitBtn")
             form.addEventListener("submit", (e) => {

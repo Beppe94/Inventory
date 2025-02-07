@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getHomepage, newGameForm, newGamePost } from "../Controller/controller.js";
+import { getHomepage, newGameForm, newGamePost, updateGame } from "../Controller/controller.js";
 
 const route = Router();
 
@@ -7,5 +7,6 @@ const route = Router();
 route.get("/", getHomepage);
 route.get("/newGame", newGameForm);
 route.post("/newGame", newGamePost);
+route.get("/:id/updateGame", updateGame);
 
 export default route;
