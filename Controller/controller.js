@@ -1,4 +1,4 @@
-import { getGames, insertGameInDB } from "../Database/Queries.js";
+import { getGames, getGameToEdit, insertGameInDB, updateGame } from "../Database/Queries.js";
 import { body, validationResult } from "express-validator";
 
 const validateGameFields = [
@@ -23,39 +23,31 @@ export async function getHomepage(req, res) {
     res.status(200).render("home", {data: data});
 }
 
-export function newGameForm(req, res) {
-    res.status(200).render("newGame", {data: {} , errors: []});
+export function newGameGet(req, res) {
+    const id = req.params.id
+    res.status(200).render("newGame", {data: {id: id} , errors: []});
 }
 
 export const newGamePost = [validateGameFields, async (req, res) => {
     const errors = validationResult(req);
+    const id = req.params.id;
     const {title, image, price, reviews, genre} = req.body;
-    const array = [];
+    const array = [].concat(genre || []);
+    const editGame = await getGameToEdit(id);
 
-    if(typeof genre === "string") {
-        array.push(genre);
-    } else {
-        genre.forEach((tag) => {
-            array.push(tag);
-        })
-    }
-    
     if(!errors.isEmpty()) {
         return res.status(400).render("newGame", {
-            data: {title, image, price, reviews},
+            data: {title, image, price, reviews, genre},
             errors: errors.array()
         });
     }
 
-    await insertGameInDB({title, image, price, reviews, genre: JSON.stringify(array)})
+    if(id) {
+        await updateGame({id, title, image, price, reviews, genre: JSON.stringify(array)});
+    } else {
+        
+        await insertGameInDB({title, image, price, reviews, genre: JSON.stringify(array)})
+    }
     res.redirect("/");
 }]
 
-export async function updateGame(req, res) {
-    const game = req.params.id
-    console.log(game);
-
-    res.render("updateGame", {
-        game: game
-    });
-}

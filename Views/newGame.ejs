@@ -8,10 +8,10 @@
 </head>
 <body>
     <div>
-        <form id="gameForm" action="/newGame" method="POST" name="newGame">
+        <form id="gameForm" action="<%=data.id ? '/' + data.id + '/updateGame' : '/newGame'%>" method="POST" name="newGame">
             <div>
                 <label id="title">Title:</label>
-                <input type="text" name="title" value="<%=data?.title || ''%>">
+                <input type="text" name="title" value="<%=data.title%>">
                 <%errors?.filter(err => err.path == 'title').forEach(err => {%>
                     <p><%=err.msg%></p>
                 <%})%>
