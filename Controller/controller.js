@@ -23,9 +23,17 @@ export async function getHomepage(req, res) {
     res.status(200).render("home", {data: data});
 }
 
-export function newGameGet(req, res) {
+export async function newGameGet(req, res) {
     const id = req.params.id
-    res.status(200).render("newGame", {data: {id: id} , errors: []});
+    let editGame;
+
+    if(id) {
+        editGame = await getGameToEdit(id);   
+        
+        renderFunction(res, editGame[0], {id: id}, []);
+    } else {
+        renderFunction(res, [], {id: id}, [])
+    }
 }
 
 export const newGamePost = [validateGameFields, async (req, res) => {
@@ -33,15 +41,12 @@ export const newGamePost = [validateGameFields, async (req, res) => {
     const id = req.params.id;
     const {title, image, price, reviews, genre} = req.body;
     const array = [].concat(genre || []);
-    const editGame = await getGameToEdit(id);
 
+    
     if(!errors.isEmpty()) {
-        return res.status(400).render("newGame", {
-            data: {title, image, price, reviews, genre},
-            errors: errors.array()
-        });
+        renderFunction(res, [], {title,image,price,reviews,genre}, errors.array());
     }
-
+    
     if(id) {
         await updateGame({id, title, image, price, reviews, genre: JSON.stringify(array)});
     } else {
@@ -51,3 +56,10 @@ export const newGamePost = [validateGameFields, async (req, res) => {
     res.redirect("/");
 }]
 
+function renderFunction(res, edit, data, errors) {
+    return res.status(200).render("newGame", {
+        edit: edit,
+        data: data,
+        errors: errors
+    })
+}
