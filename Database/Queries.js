@@ -29,9 +29,11 @@ export async function getGameToEdit(id) {
 
 export async function updateGame(data) {
     const { id, title, image, price, reviews, genre } = data;
-    console.log(data);
-    
 
     await client.query(`UPDATE games SET title = $1, image = $2, price = $3 WHERE id = $4`, [title, image, price, id])
     await client.query(`UPDATE info SET reviews = $1, genre = $2 WHERE game_id = $3`, [reviews, genre, id])
+}
+
+export async function removeGameFromDb(id) {
+    await client.query(`DELETE FROM games WHERE games.id = $1`, [id])
 }

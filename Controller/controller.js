@@ -1,4 +1,4 @@
-import { getGames, getGameToEdit, insertGameInDB, updateGame } from "../Database/Queries.js";
+import { getGames, getGameToEdit, insertGameInDB, removeGameFromDb, updateGame } from "../Database/Queries.js";
 import { body, validationResult } from "express-validator";
 
 const validateGameFields = [
@@ -19,7 +19,7 @@ const validateGameFields = [
 
 export async function getHomepage(req, res) {
     const data = await getGames();
-    
+
     res.status(200).render("home", {data: data});
 }
 
@@ -45,16 +45,24 @@ export const newGamePost = [validateGameFields, async (req, res) => {
     
     if(!errors.isEmpty()) {
         renderFunction(res, [], {title,image,price,reviews,genre}, errors.array());
+        return
     }
     
     if(id) {
         await updateGame({id, title, image, price, reviews, genre: JSON.stringify(array)});
     } else {
-        
-        await insertGameInDB({title, image, price, reviews, genre: JSON.stringify(array)})
+        await insertGameInDB({title, image, price, reviews, genre: JSON.stringify(array)});   
     }
+
     res.redirect("/");
 }]
+
+export async function removeGame(req, res) {
+    const gameId = req.params.id
+    await removeGameFromDb(gameId);
+
+    res.redirect("/");
+}
 
 function renderFunction(res, edit, data, errors) {
     return res.status(200).render("newGame", {
@@ -63,3 +71,4 @@ function renderFunction(res, edit, data, errors) {
         errors: errors
     })
 }
+

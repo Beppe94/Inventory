@@ -2,14 +2,27 @@
     <div class="card">
         <p><%=game.title%></p>
         <p><%=game.price%></p>
-        <img src=<%=game.image%>>
+        <img loading="lazy" src=<%=game.image%>>
         <p><%=game.reviews%></p>
         <%game.genre.forEach((tag) => {%> 
             <p><%=tag%></p>
         <%})%>
         <div>
-            <a href="/<%=game.id%>/updateGame"><button>Edit</button></a>
+            <a href="/<%=game.id%>/updateGame" onmouseover="getPage()"><button>Edit</button></a>
+            <a href="/<%=game.id%>/delete" onclick="checkPass()"><button>Delete</button></a>
         </div>
+
+        <script>
+            async function getPage() {
+                try {
+                    const res = await fetch('/<%=game.id%>/updateGame');
+                } catch (err) {
+                    alert(err);
+                    return
+                }
+            }
+        </script>
     </div>
 <%})%>
+
 
