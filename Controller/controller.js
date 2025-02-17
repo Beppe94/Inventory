@@ -60,7 +60,7 @@ export const newGamePost = [validateGameFields, async (req, res) => {
 
 export async function removeGame(req, res) {
     const gameId = req.params.id
-    const { password } = req.body;    
+    const { password } = req.body;
     
     if(password !== process.env.PASSWORD || password.trim() === '') {
         

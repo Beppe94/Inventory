@@ -1,9 +1,14 @@
 <% data.forEach((game) => { %>
     <div class="card">
-        <p><%=game.title%></p>
-        <p>€ <%=game.price%></p>
         <img loading="lazy" src=<%=game.image%>>
-        <p>⭐ <%=game.reviews%></p>
+        <div class="card-top">
+            <span data-title="<%=game.title%>"><p><%=game.title%></p></span>
+            <div>
+                <p><%=game.reviews%></p>
+                <p>⭐</p>
+            </div>
+        </div>
+        <p>€ <%=game.price%></p>
         <%game.genre.forEach((tag) => {%> 
             <p><%=tag%></p>
         <%})%>

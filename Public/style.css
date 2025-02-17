@@ -19,6 +19,37 @@ body {
     position: relative;
 }
 
+.card-top {
+    gap: 5px;
+    background-color: rgba(138, 133, 133, 0.5);
+    padding: 5px;
+    width: 100%;
+    top: 0;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0 0 10px 10px;
+}
+
+.card-top span {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.card-top span:hover {
+    white-space: normal;
+    overflow: visible;
+}
+
+.card-top div {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+}
+
 .card img{
     width: 260px;
     height: auto;
