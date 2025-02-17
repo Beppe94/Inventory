@@ -1,28 +1,45 @@
 <% data.forEach((game) => { %>
     <div class="card">
         <p><%=game.title%></p>
-        <p><%=game.price%></p>
+        <p>€ <%=game.price%></p>
         <img loading="lazy" src=<%=game.image%>>
-        <p><%=game.reviews%></p>
+        <p>⭐ <%=game.reviews%></p>
         <%game.genre.forEach((tag) => {%> 
             <p><%=tag%></p>
         <%})%>
         <div>
-            <a href="/<%=game.id%>/updateGame" onmouseover="getPage()"><button>Edit</button></a>
-            <a href="/<%=game.id%>/delete" onclick="checkPass()"><button>Delete</button></a>
+            <a href="/<%=game.id%>/updateGame"><button>Edit</button></a>
+            <a onclick="confirmDelete('<%=game.id%>')" class="pwBtn"><button>Delete</button></a>
         </div>
-
-        <script>
-            async function getPage() {
-                try {
-                    const res = await fetch('/<%=game.id%>/updateGame');
-                } catch (err) {
-                    alert(err);
-                    return
-                }
-            }
-        </script>
     </div>
 <%})%>
+
+<script>
+    function confirmDelete(itemId) {
+        const password = prompt("Insert secret password to delete item.");
+        if(!password) return;
+        
+        if(password) {
+            fetch(`/${itemId}/delete`, {
+                method: "POST",
+                headers: {"Content-Type" : "application/json"},
+                body: JSON.stringify({password})
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.success) {
+                    alert("Item removed")
+                    location.reload();
+                } else {
+                    alert("Wrong password!");
+                }
+            })
+            .catch(err =>  {
+                console.log(err);
+                alert("Unforseen Error!")
+            })
+        }
+    }
+</script>
 
 

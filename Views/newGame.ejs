@@ -11,7 +11,7 @@
         <form id="gameForm" action="<%=data.id ? '/' + data.id + '/updateGame' : '/newGame'%>" method="POST" name="newGame">
             <div>
                 <label id="title">Title:</label>
-                <input type="text" name="title" value="<%=edit ? edit.title : data.title %>">
+                <input type="text" name="title" value="<%=edit ? edit.title : data.title %>" placeholder="Insert Game Title">
                 <%errors?.filter(err => err.path == 'title').forEach(err => {%>
                     <p><%=err.msg%></p>
                 <%})%>
@@ -19,7 +19,7 @@
 
             <div>
                 <label id="image">Image:</label>
-                <input type="text" name="image" value="<%=edit ? edit.image : data.image %>">
+                <input type="text" name="image" value="<%=edit ? edit.image : data.image %>" placeholder="Insert img URL address">
                 <%errors?.filter(err => err.path == 'image').forEach(err => {%>
                     <p><%=err.msg%></p>
                 <%})%>

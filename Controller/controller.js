@@ -1,5 +1,6 @@
 import { getGames, getGameToEdit, insertGameInDB, removeGameFromDb, updateGame } from "../Database/Queries.js";
 import { body, validationResult } from "express-validator";
+import "dotenv/config";
 
 const validateGameFields = [
     body("title").trim()
@@ -59,9 +60,15 @@ export const newGamePost = [validateGameFields, async (req, res) => {
 
 export async function removeGame(req, res) {
     const gameId = req.params.id
-    await removeGameFromDb(gameId);
+    const { password } = req.body;    
+    
+    if(password !== process.env.PASSWORD || password.trim() === '') {
+        
+        return res.json({success: false})
+    }
 
-    res.redirect("/");
+    await removeGameFromDb(gameId);
+    return res.json({success: true})
 }
 
 function renderFunction(res, edit, data, errors) {
