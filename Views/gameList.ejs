@@ -2,19 +2,26 @@
     <div class="card">
         <img loading="lazy" src=<%=game.image%>>
         <div class="card-top">
-            <span data-title="<%=game.title%>"><p><%=game.title%></p></span>
+            <div class="gameTitle">
+                <p class="hideText"><%=game.title%></p>
+            </div>
             <div>
                 <p><%=game.reviews%></p>
                 <p>⭐</p>
             </div>
         </div>
-        <p>€ <%=game.price%></p>
-        <%game.genre.forEach((tag) => {%> 
-            <p><%=tag%></p>
-        <%})%>
-        <div>
-            <a href="/<%=game.id%>/updateGame"><button>Edit</button></a>
-            <a onclick="confirmDelete('<%=game.id%>')" class="pwBtn"><button>Delete</button></a>
+        <div class="tagWrap">
+            <div class="carousel">
+                <%game.genre.forEach((tag) => {%> 
+                    <p class="tags"><%=tag%></p>
+                    <%})%>
+            </div>
+
+        </div>
+        <div class="buttons">
+            <a href="/<%=game.id%>/updateGame"><button class="edit" name="edit">✏️</button></a>
+            <p>€ <%=game.price%></p>
+            <a></a><button onclick="confirmDelete('<%=game.id%>')" class="delete" name="delete">🗑️</button></a>
         </div>
     </div>
 <%})%>
