@@ -13,8 +13,8 @@
         <div class="tagWrap">
             <div class="carousel">
                 <%game.genre.forEach((tag) => {%> 
-                    <p class="tags"><%=tag%></p>
-                    <%})%>
+                    <p class="tags"><%=tag[0].toUpperCase() + tag.slice(1, tag.length)%></p>
+                <%})%>
             </div>
 
         </div>
