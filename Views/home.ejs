@@ -7,17 +7,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <a href="/"><button>Home</button></a>
+    <header class="nav">
+        <div class="homeContainer">
+            <a href="/">    
+                <img src="controller.svg" alt="Controller" class="nav-img">
+            </a>
+            <p>Game Invenotry</p>
+        </div>
+    </header>
     <div>
-        <nav>
-            <h1>Home</h1>
-        </nav>
-
         <div class="cardContainer">
             <a href="/newGame" class="addButton"><button class="addButton">+</button></a>
             <%-include("./gameList", data)%>
         </div>
-        
     </div>
 </body>
 </html>
