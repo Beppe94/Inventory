@@ -56,3 +56,15 @@ body {
 .homeContainer:hover {
     filter: invert();
 }
+
+.formWrapper {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.formContent {
+    display: flex;
+    justify-content: center;
+}
