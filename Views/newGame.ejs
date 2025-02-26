@@ -9,43 +9,61 @@
 </head>
 <body>
     <%-include("./nav")%>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
     <div class="formWrapper">
         <div class="formContent">
-            <form id="gameForm" action="<%=data.id ? '/' + data.id + '/updateGame' : '/newGame'%>" method="POST" name="newGame">
-                <div>
-                    <label id="title">Title:</label>
-                    <input type="text" name="title" value="<%=edit ? edit.title : data.title %>" placeholder="Insert Game Title">
-                    <%errors?.filter(err => err.path == 'title').forEach(err => {%>
-                        <p><%=err.msg%></p>
-                    <%})%>
+            <form id="gameForm" action="<%=data.id ? '/' + data.id + '/updateGame' : '/newGame'%>" method="POST" name="newGame" style="width: 100%;">
+                <div class="section">
+                    <div class="formInfo">
+                        <label id="title">Title</label>
+                        <%errors?.filter(err => err.path == 'title').forEach(err => {%>
+                            <p class="error"><%=err.msg%></p>
+                        <%})%>
+                    </div>
+                    <input type="text" name="title" value="<%=edit ? edit.title : data.title %>" placeholder="Insert game title">
                 </div>
 
-                <div>
-                    <label id="image">Image:</label>
+                <div class="section">
+                    <div class="formInfo">
+                        <label id="image">Image</label>
+                        <%errors?.filter(err => err.path == 'image').forEach(err => {%>
+                            <p class="error"><%=err.msg%></p>
+                        <%})%>
+                    </div>
                     <input type="text" name="image" value="<%=edit ? edit.image : data.image %>" placeholder="Insert img URL address">
-                    <%errors?.filter(err => err.path == 'image').forEach(err => {%>
-                        <p><%=err.msg%></p>
-                    <%})%>
                 </div>
 
-                <div>
-                    <label id="price">Price:</label>
-                    <input type="number" step="0.01" name="price" value="<%=edit ? edit.price : data.price %>" placeholder="Enter price in euro">
-                    <%errors?.filter(err => err.path == 'price').forEach(err => {%>
-                        <p><%=err.msg%></p>
-                    <%})%>
+                <div class="section">
+                    <div class="formInfo">
+                        <label id="price">Price</label>
+                        <%errors?.filter(err => err.path == 'price').forEach(err => {%>
+                            <p class="error"><%=err.msg%></p>
+                        <%})%>
+                    </div>
+                    <input type="number" step="0.01" name="price" value="<%=edit ? edit.price : data.price %>" placeholder="Insert price">
                 </div>
 
-                <div>
-                    <label id="reviews">Reviews:</label>
+                <div class="section">
+                    <div class="formInfo">
+                        <label id="reviews">Reviews</label>
+                        <%errors?.filter(err => err.path == 'reviews').forEach(err => {%>
+                            <p class="error"><%=err.msg%></p>
+                        <%})%>
+                    </div>
                     <input type="number" step="0.01" name="reviews" value="<%=edit ? edit.reviews: data.reviews %>" placeholder="Example of rating 6.7, 4, 8...">
-                    <%errors?.filter(err => err.path == 'reviews').forEach(err => {%>
-                        <p><%=err.msg%></p>
-                    <%})%>
                 </div>
 
                 <div>
-                    <label>Genre:</label>
+                    <div style="display: flex; justify-content: space-between; text-shadow: 2px 2px 0 black;">
+                        <label>Genre</label>
+                        <%errors?.filter(err => err.path == 'genre').forEach(err => {%>
+                            <p class="error"><%=err.msg%></p>
+                        <%})%>
+                    </div>
                     <select name="genre" id="genre" multiple>
                         <option value="rpg">Rpg</option>
                         <option value="fps">Fps</option>
@@ -60,9 +78,6 @@
                         <option value="multiplayer">Multilpayer</option>
                         <option value="fantasy">Fantasy</option>
                     </select>
-                    <%errors?.filter(err => err.path == 'genre').forEach(err => {%>
-                        <p><%=err.msg%></p>
-                    <%})%>
                 </div>
                 <button type="submit" id="submitBtn">Add</button>
             </form>
