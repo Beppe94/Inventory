@@ -37,3 +37,9 @@ export async function updateGame(data) {
 export async function removeGameFromDb(id) {
     await client.query(`DELETE FROM games WHERE games.id = $1`, [id]);
 }
+
+export async function findGames(data) {
+    const { rows } = await client.query(`SELECT * FROM games JOIN info ON games.id = info.game_id WHERE games.title ILIKE '%' || $1 || '%'`, [data]);
+
+    return rows;
+}
