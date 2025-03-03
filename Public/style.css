@@ -164,6 +164,48 @@ body {
     height: auto;
 }
 
+.loader {
+    position: absolute;
+    top: 43%;
+    left: 43%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s visibility 0.5s;
+}
+
+.card.loaded .loader {
+    display: none !important;
+    animation-play-state: paused;
+}
+
+.loader::after {
+    content: "";
+    width: 40px;
+    height: 40px;
+    border: 10px solid #dddddd;
+    border-top-color: black;
+    border-radius: 50%;
+    animation: loading .7s ease infinite;
+}
+
+#loadImage {
+    display: none;
+}
+
+.card.loaded #loadImage {
+    display: block;
+}
+
+@keyframes loading {
+    from {
+        transform: rotate(0turn);
+    } 
+    to {
+        transform: rotate(1turn);
+    }
+}
+
 .tagWrap {
     position: relative;
     bottom: 27%;

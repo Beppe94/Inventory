@@ -74,12 +74,11 @@ export async function removeGame(req, res) {
     return res.json({success: true})
 }
 
-export async function searchGamePost(req, res) {
+export async function searchGameGet(req, res) {
     const search = req.query.search;
     const games = await findGames(search);
 
     console.log(games);
-    
 
     res.render("gamesFound", {search: search});
 }

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getHomepage, newGameGet, newGamePost, removeGame, searchGamePost } from "../Controller/controller.js";
+import { getHomepage, newGameGet, newGamePost, removeGame, searchGameGet } from "../Controller/controller.js";
 
 const route = Router();
 
@@ -11,6 +11,6 @@ route.get("/:id/updateGame", newGameGet);
 route.post("/:id/updateGame", newGamePost)
 route.get("/:id/delete", removeGame);
 route.post("/:id/delete", removeGame);
-route.get("/search", searchGamePost);
+route.get("/search", searchGameGet);
 
 export default route;

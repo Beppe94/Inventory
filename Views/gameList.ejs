@@ -1,6 +1,7 @@
 <% data.forEach((game) => { %>
     <div class="card">
-        <img decoding="async" loading="lazy" src=<%=game.image%>>
+        <div class="loader"></div>
+        <img decoding="async" loading="lazy" data-src="<%=game.image%>" id="loadImage">
         <div class="card-top">
             <div class="gameTitle">
                 <p class="hideText"><%=game.title%></p>
@@ -52,6 +53,32 @@
             })
         }
     }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const imgs = document.querySelectorAll("#loadImage");
+
+        imgs.forEach(img => {
+            const card = img.closest(".card");
+            const temp = new Image();
+            temp.src = img.dataset.src;
+
+            temp.onload = () => {
+                img.src = temp.src;
+                card.classList.add("loaded")
+            }
+        })
+    })
+
+    /*
+    window.addEventListener("load", () => {
+        const loader = document.querySelectorAll(".loader");
+        const imgages = document.querySelectorAll("#loadImage");
+        imgages.forEach(img => {
+            img.addEventListener("onload", () => {
+                alert('done')
+            })
+        })
+    })*/
 </script>
 
 
