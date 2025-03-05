@@ -7,17 +7,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <%-include("./nav")%>
-    <div class="cube"></div>
-    <div class="cube"></div>
-    <div class="cube"></div>
-    <div class="cube"></div>
-    <div class="cube"></div>
-    <div>
+    <div class="wrapper">
+        <%-include("./nav")%>
+        <div class="cube"></div>
+        <div class="cube"></div>
+        <div class="cube"></div>
+        <div class="cube"></div>
+        <div class="cube"></div>
         <div class="cardContainer">
-            <a href="/newGame" class="addButton"><button class="addButton">+</button></a>
+            <a href="/newGame"><button class="addButton">+</button></a>
             <%-include("./gameList", data)%>
         </div>
+        <%-include("./footer")%>
     </div>
 </body>
 </html>
