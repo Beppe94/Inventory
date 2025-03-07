@@ -4,8 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Games Found</title>
+    <link rel="stylesheet" href="gamesFoundStyle.css">
 </head>
 <body>
-    <h1><%=search%></h1>
+    <%-include("./nav")%>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="wrapper">
+        <%search.forEach((game) => { %>
+            <div class="card">
+                <div class="loader"></div>
+                <img decoding="async" loading="lazy" src="<%=game.image%>" alt="Game Image">
+                <div class="wrapInfo">
+                    <div class="cardTop">
+                        <div class="title">
+                            <p><%=game.title%></p>
+                        </div>
+                        <div class="reviews">
+                            <p><%=game.reviews%></p>
+                            <p>⭐</p>
+                        </div>
+                    </div>
+                    <div class="wrapTags">
+                        <div class="price">
+                            <p>€ <%=game.price%></p>
+                        </div>
+                        <div class="tags">
+                            <%game.genre.forEach((tag) => {%> 
+                                <p><%=tag[0].toUpperCase() + tag.slice(1, tag.length)%></p>
+                            <%})%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <%})%>
+    </div>
+    <%-include("./footer")%>
 </body>
 </html>

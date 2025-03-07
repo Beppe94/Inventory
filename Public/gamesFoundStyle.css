@@ -9,17 +9,17 @@
 }
 
 body {
+    width: 100dvw;
+    height: 100dvh;
     font-family: "Teko", serif, Arial, Helvetica, sans-serif;
     font-size: 22px;
     font-weight: 400;
 
-    background: linear-gradient(132deg, #ec6c22, #1946da, #d1ce25);
+    background: linear-gradient(132deg, #ec6c22, #1946da, #d1ce25) no-repeat center;
     background-size: 400% 400%;
     animation: gradient 10s ease infinite;
     position: relative;
-    height: 100vh;
-    width: 100%;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 body::-webkit-scrollbar {
@@ -42,26 +42,31 @@ body::-webkit-scrollbar {
 .cube:nth-child(2n) {
     border-color: #FFF ;
 }
+
 .cube:nth-child(2) {
   animation-delay: 2s;
   left: 25vw;
   top: 40vh;
 }
+
 .cube:nth-child(3) {
   animation-delay: 3s;
   left: 75vw;
   top: 50vh;
 }
+
 .cube:nth-child(4) {
   animation-delay: 5s;
   left: 90vw;
   top: 10vh;
 }
+
 .cube:nth-child(5) {
   animation-delay: 7s;
   left: 10vw;
   top: 85vh;
 }
+
 .cube:nth-child(6) {
   animation-delay: 9s;
   left: 50vw;
@@ -113,73 +118,124 @@ body::-webkit-scrollbar {
     width: 300px;
 }
 
-.formWrapper {
+.wrapper {
+    max-width: 800px;
     padding: 10px;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    gap: 5px;
-    overflow: visible;
-    z-index: 999;
-}
-
-.formContent {
-    background: rgba(109, 108, 108, .3);
-    box-shadow: 0 0 10px 3px rgba(172, 165, 165, 0.582);
-    width: 448px;
-    padding: 1rem;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    font-size:28px;
-    color: #fff;
-}
-
-.formContent form {
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.formContent form input {
-    padding: 5px;
-    border-radius: 6px;
-    height: 32px;
+.card {
+    display: flex;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    min-height: 320px;
 }
 
-.section {
-    text-shadow: 2px 2px 0 black;
+.card img {
+    max-width: 240px;
+    max-height: 320px;
+    object-fit: cover;
+    border-radius: 10px 0 0 10px;
+    border-right: 2px solid #fff;
 }
 
-.section input {
+.wrapInfo {
+    display: flex;
+    flex-direction: column;
     width: 100%;
+    padding: 10px;
 }
 
-.formInfo {
+.cardTop {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(201, 194, 194);
+    font-size: 32px;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+}
+
+.reviews {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.wrapTags {
+    width: 100%;
+    height: calc(100% - 32px);
+    position: relative;
     display: flex;
     justify-content: space-between;
 }
 
-.error {
-    text-shadow: 2px 2px 0 black;
-    color: #fa2c2c;
-}
-
-li {
+.price {
+    position: absolute;
+    bottom: 0;
     display: flex;
-    justify-content: flex-start;
-    color: black;
+    align-items: center;
+    font-size: 32px;
 }
 
-#submitBtn {
-    font-size: 18px;
-    font-family: "Teko", serif, Arial, Helvetica, sans-serif;
-    margin: 0 auto;
-    width: 120px;
-    height: 34px;
-    background-color: rgb(41, 120, 223);
-    color: #fff;
-    border-radius: 6px;
+.tags {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.tags p {
+    background-color: #e0d8d370;
+    padding: 3px;
+    border-radius: 10px;
+}
+
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100dvw;
+    font-size: 24px;
+}
+
+.github {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+}
+
+.github img {
+    width: 40px;
+    height: auto;
+}
+
+.contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+}
+
+.contact img {
+    width: 40px;
+    height: auto;
+    filter: invert();
+}
+
+@media screen and (max-width: 560px) {
+    .nav {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
 }
 
 @keyframes gradient {
@@ -202,13 +258,5 @@ li {
     to {
       transform: scale(20) rotate(960deg) translate(-40%, -40%);
       opacity: 0;
-    }
-}
-
-@media screen and (max-width: 551px) {
-    .nav {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
     }
 }

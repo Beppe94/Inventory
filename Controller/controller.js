@@ -64,23 +64,21 @@ export const newGamePost = [validateGameFields, async (req, res) => {
 export async function removeGame(req, res) {
     const gameId = req.params.id
     const { password } = req.body;
-    
+    //check for password in env file and if password is an empty string
     if(password !== process.env.PASSWORD || password.trim() === '') {
         
-        return res.json({success: false})
+        return res.json({success: false});
     }
 
     await removeGameFromDb(gameId);
-    return res.json({success: true})
+    return res.json({success: true});
 }
 
 export async function searchGameGet(req, res) {
     const search = req.query.search;
     const games = await findGames(search);
 
-    console.log(games);
-
-    res.render("gamesFound", {search: search});
+    res.render("gamesFound", {search: games});
 }
 
 function renderFunction(res, edit, data, errors) {
