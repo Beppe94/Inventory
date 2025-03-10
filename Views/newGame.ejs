@@ -67,6 +67,7 @@
                     <select name="genre" id="genre" multiple>
                         <option value="rpg">Rpg</option>
                         <option value="fps">Fps</option>
+                        <option value="tps">Tps</option>
                         <option value="simulator">Simulator</option>
                         <option value="action">Action</option>
                         <option value="survival">Survival</option>
@@ -83,6 +84,7 @@
             </form>
         </div>
     </div>
+    <%-include("./footer")%>
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.1.0/dist/js/multi-select-tag.js"></script>
     <script>
         new MultiSelectTag("genre");

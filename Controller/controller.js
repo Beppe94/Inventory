@@ -20,7 +20,6 @@ const validateGameFields = [
 
 export async function getHomepage(req, res) {
     const data = await getGames();
-    const search = req.query.search;
 
     res.status(200).render("home", {data: data});
 }
@@ -77,7 +76,7 @@ export async function removeGame(req, res) {
 export async function searchGameGet(req, res) {
     const search = req.query.search;
     const games = await findGames(search);
-
+    
     res.render("gamesFound", {search: games});
 }
 

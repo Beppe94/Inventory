@@ -10,14 +10,16 @@
 
 body {
     font-family: "Teko", serif, Arial, Helvetica, sans-serif;
-    font-size: 22px;
+    font-size: 1.4rem;
     font-weight: 400;
 
     background: linear-gradient(132deg, #ec6c22, #1946da, #d1ce25) no-repeat center;
     background-size: 400% 400%;
+    background-repeat: repeat;
     animation: gradient 10s ease infinite;
+    background-repeat: repeat;
     position: relative;
-    overflow: hidden;
+    overflow: auto;
     width: 100dvw;
     height: 100dvh;
 }
@@ -111,7 +113,7 @@ body::-webkit-scrollbar {
 }
 
 .searchBar input {
-    font-size: 18px;
+    font-size: 1.1rem;
     padding: 5px;
     border-radius: 10px;
     height: 40px;
@@ -159,9 +161,10 @@ body::-webkit-scrollbar {
         position: absolute;
         top: 5%;
         right: 3%;
-        width: 60px !important;
-        height: 60px !important;
-        font-size: 38px !important;
+        max-width: 60px !important;
+        max-height: 60px !important;
+        
+        font-size: 2rem !important;
         z-index: 9999;
     }
 }
@@ -171,7 +174,7 @@ body::-webkit-scrollbar {
     cursor: pointer;
     width: 260px;
     height: 390px;
-    font-size: 124px;
+    font-size: 6rem;
     border-radius: 5px;
     transition: all .3s ease-in;
 }
@@ -276,10 +279,10 @@ body::-webkit-scrollbar {
 
 .tagWrap {
     position: relative;
-    bottom: 27%;
+    bottom: 95px;
     display: flex;
     overflow: hidden;
-    font-size: 20px;
+    font-size: 1.3rem;
 }
 
 .carousel {
@@ -303,7 +306,7 @@ body::-webkit-scrollbar {
     animation-play-state: paused;
 }
 
-@keyframes  slide{
+@keyframes  slide {
     0% {transform: translateX(260px)}
     100% {transform: translateX(-101%);}
 }
@@ -332,8 +335,8 @@ body::-webkit-scrollbar {
     border-radius: 10px;
     border: none;
     outline: none;
-    font-size: 30px;
-    width: 45px;
+    font-size: 1.5rem;
+    max-width: 45px;
     display: flex;
     justify-content: center;
 }
@@ -351,17 +354,17 @@ body::-webkit-scrollbar {
 }
 
 .footer {
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100dvw;
-    font-size: 24px;
+    font-size: 1.6rem;
 }
 
 .github {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: .5rem;
+    gap: 10px;
 }
 
 .github img {
@@ -373,7 +376,7 @@ body::-webkit-scrollbar {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: .5rem;
+    gap: 10px;
 }
 
 .contact img {
