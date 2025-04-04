@@ -1,4 +1,4 @@
-import { findGames, getGames, getGameToEdit, insertGameInDB, removeGameFromDb, updateGame } from "../Database/Queries.js";
+import { findGames, getGames, getGameToEdit, insertGameInDB, removeGameFromDb, updateGame } from "../database/Queries.js";
 import { body, validationResult } from "express-validator";
 import "dotenv/config";
 
