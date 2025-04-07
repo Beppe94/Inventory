@@ -13,4 +13,5 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join("./public")));
 app.use("/", route);
 
-app.listen(ENV.PORT, () => console.log(`Listening on port: ${ENV.PORT}`));
+//app.listen(ENV.PORT, () => console.log(`Listening on port: ${ENV.PORT}`));
+export default app;
